@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GambitModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="addressId" />
+    </Key>
+    <Property Name="miejscowosc" Type="nvarchar" MaxLength="30" />
+    <Property Name="nrDomu" Type="int" />
+    <Property Name="nrLokalu" Type="int" />
+    <Property Name="kodPocztowy" Type="nvarchar" MaxLength="6" />
+    <Property Name="wojewodztwo" Type="nvarchar" MaxLength="20" />
+    <Property Name="kraj" Type="nvarchar" MaxLength="30" />
+    <Property Name="addressId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Email">
+    <Key>
+      <PropertyRef Name="kontaktEmail" />
+    </Key>
+    <Property Name="kontaktEmail" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Info">
+    <Key>
+      <PropertyRef Name="infoId" />
+    </Key>
+    <Property Name="dzienImienin" Type="datetime" />
+    <Property Name="dataUrodzenia" Type="datetime" />
+    <Property Name="infoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kontakt">
+    <Key>
+      <PropertyRef Name="kontaktId" />
+    </Key>
+    <Property Name="kontaktId" Type="int" Nullable="false" />
+    <Property Name="addressId" Type="int" />
+    <Property Name="infoId" Type="int" />
+    <Property Name="numer" Type="nvarchar" MaxLength="24" />
+    <Property Name="kontaktEmail" Type="nvarchar" MaxLength="30" />
+    <Property Name="imie" Type="nvarchar" MaxLength="20" />
+    <Property Name="imie2" Type="nvarchar" MaxLength="20" />
+    <Property Name="nazwisko" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="KontaktyUzytkownikow">
+    <Key>
+      <PropertyRef Name="kontaktId" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="kontaktId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notatka">
+    <Key>
+      <PropertyRef Name="notatkaId" />
+    </Key>
+    <Property Name="tytul" Type="nvarchar" MaxLength="20" />
+    <Property Name="opis" Type="nvarchar" MaxLength="20" />
+    <Property Name="data" Type="datetime" />
+    <Property Name="notatkaId" Type="int" Nullable="false" />
+    <Property Name="wydarzenieId" Type="int" />
+    <Property Name="Id" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="Telefon">
+    <Key>
+      <PropertyRef Name="numer" />
+    </Key>
+    <Property Name="numer" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="typ" Type="text" />
+  </EntityType>
+  <EntityType Name="Wydarzenie">
+    <Key>
+      <PropertyRef Name="wydarzenieId" />
+    </Key>
+    <Property Name="nazwa" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="dataGodzinaWydarzenia" Type="datetime" Nullable="false" />
+    <Property Name="rodzaj" Type="int" Nullable="false" />
+    <Property Name="wydarzenieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="dlugoscWydarzenia" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KONTAKT_ADRES_KON_ADRES">
+    <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+    <End Role="Kontakt" Type="Self.Kontakt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="addressId" />
+      </Principal>
+      <Dependent Role="Kontakt">
+        <PropertyRef Name="addressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KONTAKT_INFORMACJ_INFO">
+    <End Role="Info" Type="Self.Info" Multiplicity="0..1" />
+    <End Role="Kontakt" Type="Self.Kontakt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Info">
+        <PropertyRef Name="infoId" />
+      </Principal>
+      <Dependent Role="Kontakt">
+        <PropertyRef Name="infoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KONTAKT_REFERENCE_EMAIL">
+    <End Role="Email" Type="Self.Email" Multiplicity="0..1" />
+    <End Role="Kontakt" Type="Self.Kontakt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Email">
+        <PropertyRef Name="kontaktEmail" />
+      </Principal>
+      <Dependent Role="Kontakt">
+        <PropertyRef Name="kontaktEmail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KONTAKT_REFERENCE_TELEFON">
+    <End Role="Telefon" Type="Self.Telefon" Multiplicity="0..1" />
+    <End Role="Kontakt" Type="Self.Kontakt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Telefon">
+        <PropertyRef Name="numer" />
+      </Principal>
+      <Dependent Role="Kontakt">
+        <PropertyRef Name="numer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KONTAKTY_KONTAKTY__ASPNETUS">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="KontaktyUzytkownikow" Type="Self.KontaktyUzytkownikow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KontaktyUzytkownikow">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KONTAKTY_KONTAKTY__KONTAKT">
+    <End Role="Kontakt" Type="Self.Kontakt" Multiplicity="1" />
+    <End Role="KontaktyUzytkownikow" Type="Self.KontaktyUzytkownikow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kontakt">
+        <PropertyRef Name="kontaktId" />
+      </Principal>
+      <Dependent Role="KontaktyUzytkownikow">
+        <PropertyRef Name="kontaktId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NOTATKA_NOTATKI_U_ASPNETUS">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="Notatka" Type="Self.Notatka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notatka">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NOTATKA_NOTATKI_U_wydarzenia">
+    <End Role="Wydarzenie" Type="Self.Wydarzenie" Multiplicity="0..1" />
+    <End Role="Notatka" Type="Self.Notatka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Wydarzenie">
+        <PropertyRef Name="wydarzenieId" />
+      </Principal>
+      <Dependent Role="Notatka">
+        <PropertyRef Name="wydarzenieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GambitModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Email" EntityType="Self.Email" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Info" EntityType="Self.Info" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kontakt" EntityType="Self.Kontakt" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KontaktyUzytkownikow" EntityType="Self.KontaktyUzytkownikow" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notatka" EntityType="Self.Notatka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Telefon" EntityType="Self.Telefon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Wydarzenie" EntityType="Self.Wydarzenie" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KONTAKT_ADRES_KON_ADRES" Association="Self.FK_KONTAKT_ADRES_KON_ADRES">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Kontakt" EntitySet="Kontakt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KONTAKT_INFORMACJ_INFO" Association="Self.FK_KONTAKT_INFORMACJ_INFO">
+      <End Role="Info" EntitySet="Info" />
+      <End Role="Kontakt" EntitySet="Kontakt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KONTAKT_REFERENCE_EMAIL" Association="Self.FK_KONTAKT_REFERENCE_EMAIL">
+      <End Role="Email" EntitySet="Email" />
+      <End Role="Kontakt" EntitySet="Kontakt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KONTAKT_REFERENCE_TELEFON" Association="Self.FK_KONTAKT_REFERENCE_TELEFON">
+      <End Role="Telefon" EntitySet="Telefon" />
+      <End Role="Kontakt" EntitySet="Kontakt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KONTAKTY_KONTAKTY__ASPNETUS" Association="Self.FK_KONTAKTY_KONTAKTY__ASPNETUS">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="KontaktyUzytkownikow" EntitySet="KontaktyUzytkownikow" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KONTAKTY_KONTAKTY__KONTAKT" Association="Self.FK_KONTAKTY_KONTAKTY__KONTAKT">
+      <End Role="Kontakt" EntitySet="Kontakt" />
+      <End Role="KontaktyUzytkownikow" EntitySet="KontaktyUzytkownikow" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NOTATKA_NOTATKI_U_ASPNETUS" Association="Self.FK_NOTATKA_NOTATKI_U_ASPNETUS">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Notatka" EntitySet="Notatka" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NOTATKA_NOTATKI_U_wydarzenia" Association="Self.FK_NOTATKA_NOTATKI_U_wydarzenia">
+      <End Role="Wydarzenie" EntitySet="Wydarzenie" />
+      <End Role="Notatka" EntitySet="Notatka" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

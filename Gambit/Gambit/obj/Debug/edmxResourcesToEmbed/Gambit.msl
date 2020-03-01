@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GambitModelStoreContainer" CdmEntityContainer="GambitEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="GambitModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Address">
+      <EntityTypeMapping TypeName="GambitModel.Address">
+        <MappingFragment StoreEntitySet="Address">
+          <ScalarProperty Name="miejscowosc" ColumnName="miejscowosc" />
+          <ScalarProperty Name="nrDomu" ColumnName="nrDomu" />
+          <ScalarProperty Name="nrLokalu" ColumnName="nrLokalu" />
+          <ScalarProperty Name="kodPocztowy" ColumnName="kodPocztowy" />
+          <ScalarProperty Name="wojewodztwo" ColumnName="wojewodztwo" />
+          <ScalarProperty Name="kraj" ColumnName="kraj" />
+          <ScalarProperty Name="addressId" ColumnName="addressId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="GambitModel.AspNetRoles">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="GambitModel.AspNetUserClaims">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="GambitModel.AspNetUserLogins">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="GambitModel.AspNetUsers">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Email">
+      <EntityTypeMapping TypeName="GambitModel.Email">
+        <MappingFragment StoreEntitySet="Email">
+          <ScalarProperty Name="kontaktEmail" ColumnName="kontaktEmail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Info">
+      <EntityTypeMapping TypeName="GambitModel.Info">
+        <MappingFragment StoreEntitySet="Info">
+          <ScalarProperty Name="dzienImienin" ColumnName="dzienImienin" />
+          <ScalarProperty Name="dataUrodzenia" ColumnName="dataUrodzenia" />
+          <ScalarProperty Name="infoId" ColumnName="infoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kontakt">
+      <EntityTypeMapping TypeName="GambitModel.Kontakt">
+        <MappingFragment StoreEntitySet="Kontakt">
+          <ScalarProperty Name="kontaktId" ColumnName="kontaktId" />
+          <ScalarProperty Name="addressId" ColumnName="addressId" />
+          <ScalarProperty Name="infoId" ColumnName="infoId" />
+          <ScalarProperty Name="numer" ColumnName="numer" />
+          <ScalarProperty Name="kontaktEmail" ColumnName="kontaktEmail" />
+          <ScalarProperty Name="imie" ColumnName="imie" />
+          <ScalarProperty Name="imie2" ColumnName="imie2" />
+          <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notatka">
+      <EntityTypeMapping TypeName="GambitModel.Notatka">
+        <MappingFragment StoreEntitySet="Notatka">
+          <ScalarProperty Name="tytul" ColumnName="tytul" />
+          <ScalarProperty Name="opis" ColumnName="opis" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="notatkaId" ColumnName="notatkaId" />
+          <ScalarProperty Name="wydarzenieId" ColumnName="wydarzenieId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Telefon">
+      <EntityTypeMapping TypeName="GambitModel.Telefon">
+        <MappingFragment StoreEntitySet="Telefon">
+          <ScalarProperty Name="numer" ColumnName="numer" />
+          <ScalarProperty Name="typ" ColumnName="typ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Wydarzenie">
+      <EntityTypeMapping TypeName="GambitModel.Wydarzenie">
+        <MappingFragment StoreEntitySet="Wydarzenie">
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="dataGodzinaWydarzenia" ColumnName="dataGodzinaWydarzenia" />
+          <ScalarProperty Name="rodzaj" ColumnName="rodzaj" />
+          <ScalarProperty Name="wydarzenieId" ColumnName="wydarzenieId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="dlugoscWydarzenia" ColumnName="dlugoscWydarzenia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="GambitModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KontaktyUzytkownikow" TypeName="GambitModel.KontaktyUzytkownikow" StoreEntitySet="KontaktyUzytkownikow">
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="Kontakt">
+        <ScalarProperty Name="kontaktId" ColumnName="kontaktId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

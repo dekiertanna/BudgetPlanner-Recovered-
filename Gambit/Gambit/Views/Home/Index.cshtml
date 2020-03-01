@@ -1,0 +1,294 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    
+}
+
+@section scripts{
+
+    <script>
+    $(document).ready(function () {
+
+        var sourceFullView = { url: '/Home/GetDiaryEvents/' };
+        var sourceSummaryView = { url: '/Home/GetDiarySummary/' };
+        var CalLoading = true;
+
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            defaultView: 'agendaDay',
+            editable: true,
+            allDaySlot: false,
+            selectable: true,
+            slotMinutes: 15,
+            events: '/Home/GetDiaryEvents/',
+            eventClick: function (calEvent, jsEvent, view) {
+                alert('You clicked on event id: ' + calEvent.id
+                    + "\nSpecial ID: " + calEvent.someKey
+                    + "\nAnd the title is: " + calEvent.title);
+
+            },
+
+            eventDrop: function (event, dayDelta, minuteDelta, allDay, revertFunc) {
+                if (confirm("Confirm move?")) {
+                    UpdateEvent(event.id, event.start);
+                }
+                else {
+                    revertFunc();
+                }
+            },
+
+            eventResize: function (event, dayDelta, minuteDelta, revertFunc) {
+
+                if (confirm("Confirm change appointment length?")) {
+                    UpdateEvent(event.id, event.start, event.end);
+                }
+                else {
+                    revertFunc();
+                }
+            },
+
+
+
+            dayClick: function (date, allDay, jsEvent, view) {
+                $('#eventTitle').val("");
+                $('#eventDate').val($.fullCalendar.formatDate(date, 'dd/MM/yyyy'));
+                $('#eventTime').val($.fullCalendar.formatDate(date, 'HH:mm'));
+                ShowEventPopup(date);
+            },
+
+            viewRender: function (view, element) {
+
+                if (!CalLoading) {
+                    if (view.name == 'month') {
+                        $('#calendar').fullCalendar('removeEventSource', sourceFullView);
+                        $('#calendar').fullCalendar('removeEvents');
+                        $('#calendar').fullCalendar('addEventSource', sourceSummaryView);
+                    }
+                    else {
+                        $('#calendar').fullCalendar('removeEventSource', sourceSummaryView);
+                        $('#calendar').fullCalendar('removeEvents');
+                        $('#calendar').fullCalendar('addEventSource', sourceFullView);
+                    }
+                }
+            }
+
+        });
+
+        CalLoading = false;
+
+
+    });
+
+    $('#btnInit').click(function () {
+        $.ajax({
+            type: 'POST',
+            url: "/Home/Init",
+            success: function (response) {
+                if (response == 'True') {
+                    $('#calendar').fullCalendar('refetchEvents');
+                    alert('Database populated! ');
+                }
+                else {
+                    alert('Error, could not populate database!');
+                }
+            }
+        });
+    });
+
+    $('#btnPopupCancel').click(function () {
+        ClearPopupFormValues();
+        $('#popupEventForm').hide();
+    });
+
+    $('#btnPopupSave').click(function () {
+
+        $('#popupEventForm').hide();
+
+        var dataRow = {
+            'Title': $('#eventTitle').val(),
+            'NewEventDate': $('#eventDate').val(),
+            'NewEventTime': $('#eventTime').val(),
+            'NewEventDuration': $('#eventDuration').val()
+        }
+
+        ClearPopupFormValues();
+
+        $.ajax({
+            type: 'POST',
+            url: "/Home/SaveEvent",
+            data: dataRow,
+            success: function (response) {
+                if (response == 'True') {
+                    $('#calendar').fullCalendar('refetchEvents');
+                    alert('New event saved!');
+                }
+                else {
+                    alert('Error, could not save event!');
+                }
+            }
+        });
+    });
+
+    function ShowEventPopup(date) {
+        ClearPopupFormValues();
+        $('#popupEventForm').show();
+        $('#eventTitle').focus();
+    }
+
+    function ClearPopupFormValues() {
+        $('#eventID').val("");
+        $('#eventTitle').val("");
+        $('#eventDateTime').val("");
+        $('#eventDuration').val("");
+    }
+
+    function UpdateEvent(EventID, EventStart, EventEnd) {
+
+        var dataRow = {
+            'ID': EventID,
+            'NewEventStart': EventStart,
+            'NewEventEnd': EventEnd
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: "/Home/UpdateEvent",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(dataRow)
+        });
+    }
+
+    </script>
+
+
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Dashboard</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-lg-8">
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Responsive Timeline
+                </div>
+
+
+                <section id="cd-timeline" class="cd-container">
+                    <div class="cd-timeline-block">
+                        <div class="cd-timeline-img cd-picture">
+                            <img src="../img/cd-icon-picture.svg" alt="Picture">
+                        </div> <!-- cd-timeline-img -->
+
+                        <div class="cd-timeline-content">
+
+                            <h2>Title of section 1</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+                            <a href="#0" class="cd-read-more">Read more</a>
+                            <span class="cd-date">Jan 14</span>
+                        </div> <!-- cd-timeline-content -->
+
+                    </div> <!-- cd-timeline-block -->
+
+                    <div class="cd-timeline-block">
+
+                        <div class="cd-timeline-img cd-movie">
+                            <img src="../img/cd-icon-movie.svg" alt="Movie">
+                        </div> <!-- cd-timeline-img -->
+
+                        <div class="cd-timeline-content">
+                            <h2>Title of section 2</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
+                            <a href="#0" class="cd-read-more">Read more</a>
+                            <span class="cd-date">Jan 18</span>
+                        </div> <!-- cd-timeline-content -->
+
+                    </div> <!-- cd-timeline-block -->
+
+                    <div class="cd-timeline-block">
+
+                        <div class="cd-timeline-img cd-picture">
+                            <img src="../img/cd-icon-picture.svg" alt="Picture">
+                        </div> <!-- cd-timeline-img -->
+
+                        <div class="cd-timeline-content">
+                            <h2>Title of section 3</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias eaque asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem doloremque dolorem ipsam quae rerum quis. Odit, itaque, deserunt corporis vero ipsum nisi eius odio natus ullam provident pariatur temporibus quia eos repellat consequuntur perferendis enim amet quae quasi repudiandae sed quod veniam dolore possimus rem voluptatum eveniet eligendi quis fugiat aliquam sunt similique aut adipisci.</p>
+                            <a href="#0" class="cd-read-more">Read more</a>
+                            <span class="cd-date">Jan 24</span>
+                        </div> <!-- cd-timeline-content -->
+
+                    </div> <!-- cd-timeline-block -->
+
+                    <div class="cd-timeline-block">
+
+                        <div class="cd-timeline-img cd-location">
+                            <img src="../img/cd-icon-location.svg" alt="Location">
+                        </div> <!-- cd-timeline-img -->
+
+                        <div class="cd-timeline-content">
+                            <h2>Title of section 4</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+                            <a href="#0" class="cd-read-more">Read more</a>
+                            <span class="cd-date">Feb 14</span>
+                        </div> <!-- cd-timeline-content -->
+
+                    </div> <!-- cd-timeline-block -->
+
+                    <div class="cd-timeline-block">
+
+                        <div class="cd-timeline-img cd-location">
+                            <img src="../img/cd-icon-location.svg" alt="Location">
+                        </div> <!-- cd-timeline-img -->
+
+                        <div class="cd-timeline-content">
+                            <h2>Title of section 5</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum.</p>
+                            <a href="#0" class="cd-read-more">Read more</a>
+                            <span class="cd-date">Feb 18</span>
+                        </div> <!-- cd-timeline-content -->
+
+                    </div> <!-- cd-timeline-block -->
+
+                    <div class="cd-timeline-block">
+                        <div class="cd-timeline-img cd-movie">
+                            <img src="../img/cd-icon-movie.svg" alt="Movie">
+                        </div> <!-- cd-timeline-img -->
+
+                        <div class="cd-timeline-content">
+                            <h2>Final Section</h2>
+                            <p>This is the content of the last section</p>
+                            <span class="cd-date">Feb 26</span>
+                        </div> <!-- cd-timeline-content -->
+                    </div> <!-- cd-timeline-block -->
+
+                </section> <!-- cd-timeline -->
+
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-8 -->
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.row -->
+
+
+
+
+
+
+
+</div>
+<!-- /#page-wrapper -->
